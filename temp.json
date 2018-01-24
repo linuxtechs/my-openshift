@@ -11,7 +11,7 @@
         ],
 
 	"metadata": {
-		"name": "rami-temp"
+		"name": "mytemp"
 	},
         
 		"labels": {
@@ -41,7 +41,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "java",
+                        "name": "${IMAGENUMBER}",
                         "annotations": {
                             "openshift.io/imported-from": "ramikhshan/mysample"
                         },
@@ -124,14 +124,14 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "mysample:java"
+                            "name": "mysample:${IMAGENUMBER}"
                         }
                     }
                 },
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "my-openshift:java"
+                        "name": "my-openshift:${IMAGENUMBER}"
                     }
                 },
                 "resources": {},
@@ -172,7 +172,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "my-openshift:java"
+                                "name": "my-openshift:${IMAGENUMBER}"
                             }
                         }
                     }
@@ -199,7 +199,7 @@
                         "containers": [
                             {
                                 "name": "my-openshift",
-                                "image": "my-openshift:latest",
+                                "image": "my-openshift:${IMAGENUMBER}",
                                 "ports": [
                                     {
                                         "containerPort": 8080,
