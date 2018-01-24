@@ -1,8 +1,29 @@
 {
-    "kind": "List",
-    "apiVersion": "v1",
-    "metadata": {},
-    "items": [
+	"kind": "Template",
+	"apiVersion": "v1",
+	"parameters": [
+                {
+                        "description": "Artifact Image Release Number",
+                        "name": "IMAGENUMBER",
+                        "value": "latest"
+
+                }
+        ],
+
+	"metadata": {
+		"name": "rami-temp"
+	},
+        
+		"labels": {
+
+                "application": "my-openshift",
+                "createdBy": "temp.json"
+
+        },
+
+
+	"objects": [
+
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
@@ -10,7 +31,8 @@
                 "name": "mysample",
                 "creationTimestamp": null,
                 "labels": {
-                    "app": "my-openshift"
+                    "app": "my-openshift",
+                    "template": "mytemp"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "OpenShiftNewApp"
@@ -19,7 +41,7 @@
             "spec": {
                 "tags": [
                     {
-                        "name": "latest",
+                        "name": "java",
                         "annotations": {
                             "openshift.io/imported-from": "ramikhshan/mysample"
                         },
@@ -43,7 +65,8 @@
                 "name": "my-openshift",
                 "creationTimestamp": null,
                 "labels": {
-                    "app": "my-openshift"
+                    "app": "my-openshift",
+                    "template": "mytemp"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "OpenShiftNewApp"
@@ -61,7 +84,8 @@
                 "name": "my-openshift",
                 "creationTimestamp": null,
                 "labels": {
-                    "app": "my-openshift"
+                    "app": "my-openshift",
+                     "template": "mytemp"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "OpenShiftNewApp"
@@ -100,14 +124,14 @@
                     "dockerStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "mysample:latest"
+                            "name": "mysample:java"
                         }
                     }
                 },
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "my-openshift:latest"
+                        "name": "my-openshift:java"
                     }
                 },
                 "resources": {},
@@ -124,7 +148,8 @@
                 "name": "my-openshift",
                 "creationTimestamp": null,
                 "labels": {
-                    "app": "my-openshift"
+                    "app": "my-openshift",
+                    "template": "mytemp"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "OpenShiftNewApp"
@@ -147,7 +172,7 @@
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "my-openshift:latest"
+                                "name": "my-openshift:java"
                             }
                         }
                     }
@@ -196,7 +221,8 @@
                 "name": "my-openshift",
                 "creationTimestamp": null,
                 "labels": {
-                    "app": "my-openshift"
+                    "app": "my-openshift",
+                    "template": "mytemp"
                 },
                 "annotations": {
                     "openshift.io/generated-by": "OpenShiftNewApp"
@@ -220,5 +246,8 @@
                 "loadBalancer": {}
             }
         }
-    ]
+
+	
+ ]
+
 }
